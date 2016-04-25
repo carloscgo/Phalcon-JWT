@@ -1,0 +1,25 @@
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, PUT, UPDATE, DELETE, OPTIONS, PATCH"
+Header always set Access-Control-Allow-Headers "Authorization, Content-Type, Accept, Origin, User-Agent, Cache-Control, X-Requested-With, Access-Control-Allow-Origin"
+
+AddDefaultCharset UTF-8
+
+<ifModule pagespeed_module>
+    ModPagespeed off
+</ifModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
+</IfModule>
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+#IMPORTANT TO GET JWT FROM HEADERS
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+

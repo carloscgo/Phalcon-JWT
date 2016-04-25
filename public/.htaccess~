@@ -1,0 +1,16 @@
+#Header add Access-Control-Allow-Origin "*"
+#Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+#Header add Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
+
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
+</IfModule>
+
+#IMPORTANT TO GET JWT FROM HEADERS
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]

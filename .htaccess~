@@ -1,0 +1,13 @@
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+Header add Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteRule  ^$ public/    [L]
+	RewriteRule  (.*) public/$1 [L]
+</IfModule>
+
+#IMPORTANT TO GET JWT FROM HEADERS
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
