@@ -14,4 +14,7 @@ To upgrade or install [php-jwt](https://github.com/firebase/php-jwt) use the com
 
     "composer install"
 
-  
+Test api requests with Postman, using the file:
+
+    "postman_collection.json"
+
