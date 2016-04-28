@@ -1,0 +1,86 @@
+{
+	"id": "69115b53-1516-a85c-36bc-26ebeaddccb7",
+	"name": "RestApi Net Marketing",
+	"description": "",
+	"order": [
+		"33c633d0-42f1-9540-28dd-e70aad3bb822",
+		"7b4fccd3-fcb6-abc4-835a-d984e9f14cae",
+		"33867acd-d0fd-2709-486e-b09776efbac2"
+	],
+	"folders": [],
+	"timestamp": 1460854066558,
+	"owner": "500539",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "33867acd-d0fd-2709-486e-b09776efbac2",
+			"headers": "X-Requested-With: XMLHttpRequest\n",
+			"url": "http://localhost:8504/auth/renewtoken",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "var data = JSON.parse(responseBody);\n\npostman.setEnvironmentVariable(\"token\", data.token);\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461871838703,
+			"name": "http://localhost:8504/auth/renewtoken",
+			"description": "",
+			"collectionId": "69115b53-1516-a85c-36bc-26ebeaddccb7",
+			"responses": [],
+			"rawModeData": "{\n\"grant_type\":\"refresh_token\",\n\"refresh_token\": \"{{token}}\"\n}"
+		},
+		{
+			"id": "33c633d0-42f1-9540-28dd-e70aad3bb822",
+			"headers": "X-Requested-With: XMLHttpRequest\n",
+			"url": "http://localhost:8504/auth/login",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "username@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "var data = JSON.parse(responseBody);\n\npostman.setEnvironmentVariable(\"token\", data.token);\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461871765946,
+			"name": "http://localhost:8504/auth/login",
+			"description": "",
+			"collectionId": "69115b53-1516-a85c-36bc-26ebeaddccb7",
+			"responses": []
+		},
+		{
+			"id": "7b4fccd3-fcb6-abc4-835a-d984e9f14cae",
+			"headers": "Authorization: Bearer {{token}}\nX-Requested-With: XMLHttpRequest\n",
+			"url": "http://localhost:8504/contacts",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": "var data = JSON.parse(responseBody);\n\npostman.setEnvironmentVariable(\"token\", data.token);\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461871849400,
+			"name": "http://localhost:8504/contacts",
+			"description": "",
+			"collectionId": "69115b53-1516-a85c-36bc-26ebeaddccb7",
+			"responses": []
+		}
+	]
+}
